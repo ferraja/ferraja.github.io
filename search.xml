@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/02/21/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment<i class="fas fa-external-link-alt"></i></a></p>
+    <title></title>
+    <url>/2022/02/21/%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8BdA%E4%B8%8Ed%CF%89%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<h1 id="极小立体角"><a href="#极小立体角" class="headerlink" title="极小立体角"></a>极小立体角</h1><p>根据立体角的定义，就是计算其对应的小块球面面积，在微分条件下，也就是一个极小矩形的面积。</p>
+<p><img src="https://github.com/ferraja/PicturesForBlogs/raw/main/%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E7%BB%86%E8%8A%82/%E6%9E%81%E5%B0%8F%E7%AB%8B%E4%BD%93%E8%A7%92.jpg" alt="极小立体角"></p>
+<p>约定纬度方面的边长为“长”，经度方向的边长为“宽”。</p>
+<p>那么这个极小矩形的宽很直观，是<code>r dθ</code>。</p>
+<p>记长的两个端点分别为A点和B点，长的大小是<code>√((xa - xb)² + (ya - yb)² + (za - zb)²)</code>；分别将A点和B点投影到<code>xOy</code>平面上，得A’(xa, ya, 0)和B’(xb, yb, 0)。线段A’B’的长度为<code>√((xa - xb)² + (ya - yb)²)</code>。</p>
+<p>当且仅当<code>za = zb</code>时，<code>AB = A&#39;B&#39;</code>。而A’B’很容易计算，它是一段在<code>xOy</code>平面上的圆弧，弧长为<code>rsinθ dφ</code>。</p>
+<p>由此可以得出<code>dω = r²sinθ dθdφ</code>。</p>
+<h1 id="渲染方程dA与dω的转换"><a href="#渲染方程dA与dω的转换" class="headerlink" title="渲染方程dA与dω的转换"></a>渲染方程dA与dω的转换</h1><p><img src="https://github.com/ferraja/PicturesForBlogs/raw/main/%E6%B8%B2%E6%9F%93%E6%96%B9%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6%E7%BB%86%E8%8A%82/dA%E6%8A%95%E5%BD%B1%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="dA投影示意图"></p>
+<p><code>pixel light</code>的概念来自<code>Reflective Shadow Maps</code>，此处相当于场景中任何一点，计算其从所有方向接受到的能量总和。</p>
+<p>为了直观地解渲染方程，要用光源面积微分量<code>dA</code>替换采样得到的<code>dω</code>。立体角的定义是<code>ω = area / r²</code>,此处<code>area</code>指代对应的球面面积，由此可知，我们要解决的问题是如何计算面光源所在的平面投影到着色点的半球球面的结果，即求一个平面投影到另一个平面的结果。</p>
+<p>所以有<code>dω = dA cosθ / (x - p)²</code>，<code>θ</code>是球坐标系中的<code>θ</code>。</p>
 ]]></content>
-      <categories>
-        <category>Tech</category>
-      </categories>
   </entry>
 </search>
