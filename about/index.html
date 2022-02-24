@@ -150,20 +150,165 @@
             <div class="main-content">
 
                 
-                    <div class="fade-in-down-animation">
-    <div class="page-template-container">
-        
-        
-        <div class="page-template-content markdown-body">
-            
-                <h1>about</h1>
-            
-        </div>
-        <div class="page-template-comments">
-            
-        </div>
-    </div>
-</div>
+                    $friend-link-item-height = 82px;
+$friend-link-item-height-tablet = 68px;
+$friend-link-item-interval = 16px;
+$friend-link-item-border-radius = 6px;
+
+.page-template-container {
+
+  keep-container(false, 0, 0, 30px, 30px);
+
+  .page-template-content {
+    color: var(--default-text-color);
+
+    h1, h2, h3, h4, h5, h6 {
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+    }
+  }
+
+
+  if (hexo-config('menu.Links')) {
+    .friends-link-container {
+
+      .friends-link-list {
+        position: relative;
+
+        .friends-link-item {
+          box-sizing: border-box;
+          position: relative;
+          float: left;
+          width: 50%;
+          cursor: pointer;
+          height: $friend-link-item-height;
+          padding-bottom: $friend-link-item-interval;
+
+          +keep-tablet() {
+            height: $friend-link-item-height-tablet;
+          }
+
+          &:nth-child(odd) {
+            padding-right: $friend-link-item-interval * 0.5;
+          }
+
+          &:nth-child(even) {
+            padding-left: $friend-link-item-interval * 0.5;
+          }
+
+          .content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            box-shadow: 1px 1px 2px var(--shadow-color);
+            border-radius: $friend-link-item-border-radius;
+            padding-left: $friend-link-item-height - $friend-link-item-interval;
+            box-sizing: border-box;
+
+
+            +keep-tablet() {
+              padding-left: $friend-link-item-height-tablet - $friend-link-item-interval;
+            }
+
+            &:hover {
+              box-shadow: 1px 1px 6px var(--shadow-color);
+
+              .info .name {
+                color: var(--primary-color);
+              }
+            }
+
+            .radius {
+              border-top-left-radius: $friend-link-item-border-radius;
+              border-bottom-left-radius: $friend-link-item-border-radius;
+            }
+
+            .avatar {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: $friend-link-item-height  - $friend-link-item-interval;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 2rem;
+              background: var(--second-background-color);
+              color: var(--second-text-color);
+
+
+              +keep-tablet() {
+                width: $friend-link-item-height-tablet  - $friend-link-item-interval;
+              }
+
+              img {
+                box-sizing: border-box;
+                position: relative;
+                width: 100%;
+                height: 100%;
+              }
+            }
+
+
+            .info {
+              position: relative;
+              width: 100%;
+              height: 100%;
+              box-sizing: border-box;
+              padding: 10px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-items: flex-start;
+
+              +keep-tablet() {
+                padding: 6px;
+              }
+
+              .name {
+                width: 100%;
+                height: 60%;
+                font-size: 1.28rem;
+                color: var(--second-text-color);
+
+                +keep-tablet() {
+                  font-size: 1.08rem;
+                }
+              }
+
+              .description {
+                width: 100%;
+                height: 40%;
+                font-size: 1rem;
+                color: var(--third-text-color);
+
+
+                +keep-tablet() {
+                  font-size: 0.98rem;
+                }
+              }
+
+              .ellipsis {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
 
 
                 
@@ -172,34 +317,35 @@
         </div>
 
         <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2022</span>
-              -
-            
-            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ferraja</a>
-        </div>
-        
-            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-            </div>
-        
-        <div class="theme-info info-item">
-            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
-        </div>
-        
-        
-    </div>
-</footer>
+            .footer {
+  font-size: 1rem;
+  color: var(--third-text-color);
+
+
+  a {
+    color: var(--third-text-color);
+
+
+    &:hover {
+      color: var(--primary-color);
+
+    }
+  }
+
+  .info-container {
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .info-item {
+    margin: 5px 0;
+  }
+
+  .icon-animate {
+    animation: icon-animate 1.2s ease-in-out infinite;
+  }
+
+}
 
         </div>
     </div>
@@ -251,43 +397,9 @@
 
     
 
-    .image-viewer-container {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0);
-  visibility: hidden;
-  z-index: $z-index-8;
-  padding: 6%;
-  box-sizing: border-box;
-  transition-t("visibility, background", "0, 0", "0.3, 0.3", "ease, ease");
-
-  &.active {
-    background: rgba(0, 0, 0, 0.5);
-    visibility: visible;
-
-    img {
-      cursor: zoom-out;
-      transform: scale(1);
-      padding: 2px;
-      background: var(--background-color);
-    }
-  }
-
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    transform: scale(0);
-    transition-t("transform", "0", "0.3", "ease");
-  }
-}
-
-
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
 
     
